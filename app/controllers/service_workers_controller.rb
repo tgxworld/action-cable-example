@@ -9,6 +9,6 @@ class ServiceWorkersController < ActionController::Base
         Rails.application.assets.find_asset('push-service-worker.js').pathname
       end
 
-    render file: pathname, content_type: Mime::JS
+    render file: pathname, content_type: Mime[:js]
   end
 end
