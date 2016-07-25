@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
-
   protected
 
   def authenticate_user!

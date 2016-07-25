@@ -7,6 +7,16 @@ class MessagesController < ApplicationController
       ActionCable.server.broadcast 'messages',
         message: message.content,
         user: message.user.username
+
+      SendPushNotificationsJob.perform_later({
+        user_id: current_user.id,
+        payload: {
+          title: "#{message.user.username} Posted",
+          content: message.content,
+          url: "/chatrooms/#{Chatroom.find(message.chatroom_id).slug}"
+        }
+      })
+
       head :ok
     end
   end
