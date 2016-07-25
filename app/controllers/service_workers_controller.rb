@@ -4,7 +4,7 @@ class ServiceWorkersController < ActionController::Base
   def push
     pathname =
       if Rails.env.production?
-        Rails.application.assets_manifest.assets['push-service-worker.js'].pathname
+        "#{Rails.application.assets_manifest.directory}/#{Rails.application.assets_manifest.assets['push-service-worker.js']}"
       else
         Rails.application.assets.find_asset('push-service-worker.js').pathname
       end
